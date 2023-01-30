@@ -23,5 +23,15 @@ while True:
     for index, function in enumerate(functions):
         print(f'{index + 1}. Function: >{function.name}<, by: {function.author}')
 
-    selection = input("What function would you like to run:")
-    functions[int(selection) - 1].delegate()
+    selection = None
+    while selection is None:
+        tmp = input("What function would you like to run:")
+        if not tmp.isnumeric():
+            continue
+        tmp = int(tmp) - 1
+        if tmp < 0 or tmp > len(functions) + 1:
+            continue
+        selection = tmp
+    print()
+    functions[selection].delegate()
+    print()
