@@ -5,23 +5,50 @@ class Func:
         self.delegate = delegate
 
 
-def example():
-    print("You are definitely awesome Today ...!")
-    print("Keep it up!")
+def fromGabi():
+    print("It was a pleasure working with You!")
+    print("Fly high and good luck!")
+
+def fromOla():
+    print("Goodbye and good luck! It was great to work with you!")
 
 
-func = Func("example-func", "...", example)
+def checkWeather():
+    print("There is always good weather for great people! So, YOU do not need to worry :)")
+    print("All the best to you!")
+
+def fromAga():
+    print("Thank you for being a great teammate!")
+    print("All the best on your new adventure!")
+
+gabiFunc = Func("from-gabi", "Gabriela Chacuś", fromGabi)
+olaFunc = Func("from-ola", "Aleksandra Dura", fromOla)
+wotoFunc = Func("check-weather", "Wojciech Tomaszek", checkWeather)
+agaFunc = Func("from-aga", "Agnieszka Kominek", fromAga)
 
 functions = [
-    func
+    Func("hej", "jakub", lambda: print("wszystkiego dobrego i do zobaczenia")),
+    gabiFunc,
+    wotoFunc,
+    agaFunc,
+    olaFunc
 ]
 
 while True:
-    print("Good morning ...")
+    print("Good morning Tomasz!")
     print("List of available functions:")
-    print(type(functions))
     for index, function in enumerate(functions):
         print(f'{index + 1}. Function: >{function.name}<, by: {function.author}')
 
-    selection = input("What function would you like to run:")
-    functions[int(selection) - 1].delegate()
+    selection = None
+    while selection is None:
+        tmp = input("What function would you like to run: ")
+        if not tmp.isnumeric():
+            continue
+        tmp = int(tmp) - 1
+        if tmp < 0 or tmp >= len(functions):
+            continue
+        selection = tmp
+    print()
+    functions[selection].delegate()
+    print()
